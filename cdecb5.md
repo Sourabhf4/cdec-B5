@@ -672,6 +672,553 @@ Practice daily to build confidence and improve speed.
 
 ⭐ Keep practicing Linux commands!
 
+# Chapter 6: Linux Directory Structure Explained in Detail
+
+## Introduction
+
+Linux follows a **hierarchical file system** that starts from the **Root Directory (`/`)**. Every file and directory in Linux is organized under this single root. Unlike Windows, which has multiple drives (C:, D:, E:), Linux has only **one root directory**.
+
+One of the most important principles in Linux is:
+
+> **Everything in Linux is treated as a file**, including hardware devices, disks, keyboards, terminals, and even running processes.
+
+---
+
+# Linux Directory Structure
+
+```text
+/
+├── bin
+├── boot
+├── dev
+├── etc
+├── home
+├── lib
+├── lib64
+├── media
+├── mnt
+├── opt
+├── proc
+├── root
+├── run
+├── sbin
+├── srv
+├── sys
+├── tmp
+├── usr
+└── var
+```
+
+---
+
+## Linux File System Hierarchy Diagram
+
+```mermaid
+graph TD
+    A["/ (Root Directory)"]
+
+    A --> B["bin"]
+    A --> C["boot"]
+    A --> D["dev"]
+    A --> E["etc"]
+    A --> F["home"]
+    A --> G["lib"]
+    A --> H["lib64"]
+    A --> I["media"]
+    A --> J["mnt"]
+    A --> K["opt"]
+    A --> L["proc"]
+    A --> M["root"]
+    A --> N["run"]
+    A --> O["sbin"]
+    A --> P["srv"]
+    A --> Q["sys"]
+    A --> R["tmp"]
+    A --> S["usr"]
+    A --> T["var"]
+```
+
+---
+
+# 1. Root Directory (/)
+
+The **Root Directory** is the top-most directory in Linux.
+
+Every directory and file starts from this location.
+
+### Commands
+
+```bash
+cd /
+ls
+pwd
+```
+
+### Example
+
+```text
+/
+├── home
+├── etc
+├── usr
+├── var
+```
+
+**Windows Comparison**
+
+```
+Windows
+C:\
+
+Linux
+/
+```
+
+---
+
+# 2. /bin (Binary Commands)
+
+Contains essential commands required by every Linux user.
+
+### Common Commands
+
+- ls
+- cp
+- mv
+- rm
+- cat
+- pwd
+- mkdir
+
+### Example
+
+```bash
+which ls
+```
+
+Output
+
+```text
+/bin/ls
+```
+
+---
+
+# 3. /sbin (System Binary)
+
+Contains system administration commands.
+
+Normally used by the root user.
+
+### Examples
+
+- reboot
+- shutdown
+- fdisk
+- fsck
+- mkfs
+
+### Command
+
+```bash
+/sbin/reboot
+```
+
+Used for:
+
+- System administration
+- Disk management
+- Network management
+
+---
+
+# 4. /etc (Configuration Files)
+
+Stores all Linux and application configuration files.
+
+Important files include:
+
+```text
+/etc/passwd
+/etc/hosts
+/etc/fstab
+/etc/ssh/sshd_config
+```
+
+### Example
+
+```bash
+cat /etc/hosts
+```
+
+Used by almost every application during startup.
+
+---
+
+# 5. /home (User Home Directories)
+
+Contains home directories for normal users.
+
+Example
+
+```text
+/home/sourabh
+/home/ubuntu
+/home/ec2-user
+```
+
+Commands
+
+```bash
+cd /home
+ls
+```
+
+Users usually store:
+
+- Documents
+- Downloads
+- Projects
+- Scripts
+- Pictures
+
+---
+
+# 6. /root (Root User Home)
+
+This is the home directory of the Linux administrator.
+
+Unlike normal users:
+
+```text
+/home/sourabh
+```
+
+Administrator:
+
+```text
+/root
+```
+
+Only the root user has permission to access this directory.
+
+---
+
+# 7. /usr (User Programs)
+
+Contains user applications and utilities.
+
+Important directories:
+
+```text
+/usr/bin
+/usr/sbin
+/usr/local
+/usr/share
+```
+
+Example
+
+```bash
+which python3
+```
+
+Output
+
+```text
+/usr/bin/python3
+```
+
+---
+
+# 8. /var (Variable Data)
+
+Stores files that change frequently.
+
+Examples
+
+```text
+/var/log
+/var/cache
+/var/spool
+```
+
+Command
+
+```bash
+cd /var/log
+ls
+```
+
+Important Log Files
+
+```text
+syslog
+messages
+auth.log
+```
+
+### DevOps Usage
+
+- View application logs
+- Troubleshoot servers
+- Monitor services
+
+---
+
+# 9. /tmp (Temporary Files)
+
+Stores temporary files.
+
+Example
+
+```bash
+touch /tmp/demo.txt
+```
+
+Most Linux systems automatically clean this directory after reboot.
+
+---
+
+# 10. /dev (Device Files)
+
+Linux treats hardware devices as files.
+
+Examples
+
+```text
+/dev/sda
+/dev/sdb
+/dev/null
+/dev/tty
+```
+
+Command
+
+```bash
+ls /dev
+```
+
+Interesting Example
+
+```bash
+echo "Hello Linux" > /dev/null
+```
+
+Output
+
+Nothing appears because `/dev/null` discards all data.
+
+---
+
+# 11. /proc (Process Information)
+
+A virtual file system created by the Linux kernel.
+
+Contains information about:
+
+- Running processes
+- CPU
+- Memory
+- Kernel
+
+Commands
+
+```bash
+cat /proc/cpuinfo
+```
+
+```bash
+cat /proc/meminfo
+```
+
+These files do not physically exist on disk.
+
+---
+
+# 12. /sys (System Information)
+
+Provides information about hardware and the Linux kernel.
+
+Command
+
+```bash
+ls /sys
+```
+
+Used by:
+
+- Kernel developers
+- Device drivers
+- System administrators
+
+---
+
+# 13. /boot
+
+Contains files required to boot Linux.
+
+Important files
+
+```text
+vmlinuz
+initrd
+grub
+```
+
+Command
+
+```bash
+ls /boot
+```
+
+If these files become corrupted, Linux may fail to boot.
+
+---
+
+# 14. /lib
+
+Contains shared libraries required by commands in `/bin` and `/sbin`.
+
+Windows equivalent:
+
+```
+DLL Files
+```
+
+Command
+
+```bash
+ldd /bin/ls
+```
+
+Shows libraries used by the `ls` command.
+
+---
+
+# 15. /lib64
+
+Contains shared 64-bit libraries.
+
+Mostly available on 64-bit operating systems.
+
+---
+
+# 16. /opt (Optional Software)
+
+Used for installing third-party applications.
+
+Examples
+
+```text
+/opt/google
+/opt/tomcat
+/opt/jenkins
+```
+
+Organizations usually install custom software here.
+
+---
+
+# 17. /mnt (Mount Point)
+
+Used for temporarily mounting file systems.
+
+Example
+
+```bash
+mount /dev/sdb1 /mnt
+```
+
+Useful for:
+
+- External hard disks
+- Additional partitions
+- Temporary mounts
+
+---
+
+# 18. /media
+
+Automatically mounts removable devices.
+
+Example
+
+```text
+/media/ubuntu/USB
+```
+
+Whenever a USB drive is inserted, Linux generally mounts it here.
+
+---
+
+# 19. /srv (Service Data)
+
+Stores data used by system services.
+
+Examples
+
+```text
+/srv/www
+/srv/http
+/srv/ftp
+```
+
+Commonly used by:
+
+- Web servers
+- FTP servers
+- File servers
+
+---
+
+# Directory Summary
+
+| Directory | Purpose |
+|------------|---------|
+| / | Root directory |
+| /bin | Essential commands |
+| /sbin | System administration commands |
+| /etc | Configuration files |
+| /home | User home directories |
+| /root | Root user's home |
+| /usr | User applications |
+| /var | Logs and variable data |
+| /tmp | Temporary files |
+| /dev | Device files |
+| /proc | Process information |
+| /sys | Kernel and hardware information |
+| /boot | Boot loader files |
+| /lib | Shared libraries |
+| /lib64 | 64-bit libraries |
+| /opt | Optional software |
+| /mnt | Temporary mount point |
+| /media | USB/CD mount point |
+| /srv | Service data |
+
+---
+
+# Key Interview Points
+
+- Linux follows a hierarchical file system.
+- Everything starts from the Root Directory (`/`).
+- Everything in Linux is treated as a file.
+- `/etc` stores configuration files.
+- `/home` contains user directories.
+- `/root` is the administrator's home directory.
+- `/var/log` stores log files.
+- `/proc` is a virtual file system.
+- `/dev` contains hardware device files.
+- `/boot` contains boot-related files.
+- `/usr` stores applications and utilities.
+- `/tmp` stores temporary files.
+
+---
+
+# Conclusion
+
+Understanding the Linux directory structure is essential for Linux administration, DevOps, cloud computing, and system troubleshooting. Every directory has a specific purpose, and knowing where files, configurations, logs, applications, and devices are stored makes managing Linux systems much easier.
+
 # 📝 Day 7: Mastering Text Editing with VIM
 
 ![Linux](https://img.shields.io/badge/Linux-Text%20Editor-yellow?logo=linux)
