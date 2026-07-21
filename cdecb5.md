@@ -672,7 +672,7 @@ Practice daily to build confidence and improve speed.
 
 ⭐ Keep practicing Linux commands!
 
-# Chapter 6: Linux Directory Structure Explained in Detail
+# 🐧 Day 6: Delving Deep into the Linux Directory Structure
 
 ## Introduction
 
